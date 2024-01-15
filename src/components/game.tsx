@@ -1,7 +1,7 @@
-export default function Game({ data, shuf }) {
+export default function Game({ data, shuf }: any) {
   return (
     <>
-      {data.map(item => {
+      {data.map((item: any) => {
         return (
           <img
             onClick={() => {

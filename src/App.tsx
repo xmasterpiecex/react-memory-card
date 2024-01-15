@@ -3,9 +3,9 @@ import Game from './components/game';
 import axios from 'axios';
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>();
   const [idsArray, setIdsArray] = useState<number[]>([]);
-  const [winCount, setWinCount] = useState<number>(9);
+  const [winCount, setWinCount] = useState<number>(0);
 
   const allPicturesOfPokemons = async () => {
     const some = await axios.get(
@@ -13,7 +13,7 @@ function App() {
     );
     const only = await some.data;
 
-    const allPokemons = [];
+    const allPokemons: any = [];
     for (const pokemon of only.results) {
       const responPoke = await axios.get(pokemon.url);
       const allPoke = await responPoke.data;
@@ -24,7 +24,7 @@ function App() {
   };
 
   const shuffle = (id: number) => {
-    data.sort(() => Math.random() - 0.5);
+    data!.sort(() => Math.random() - 0.5);
 
     setIdsArray([...idsArray, id]);
     setWinCount(i => i + 1);
